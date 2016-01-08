@@ -1,0 +1,20 @@
+<ion-view >
+ <ion-content>
+   <!-- Aqui coloquei o input de pesquisa de serviços e negócios-->
+  <div class="list list-inset">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Digite o que você procura">
+    </label>
+  </div>
+
+  <div class="list">
+    <a href="#/ramo/{{ramo.id}}/categoria-negocio" class="item item-avatar-left" ng-repeat="ramo in ramos">
+      <!-- colocar ícone da categoria
+        <img src=""/>
+      -->
+      <p>{{ ramo.nome }}</p>
+    </a>
+  </div>
+</ion-content>
+</ion-view>

@@ -1,0 +1,10 @@
+{
+  "name": "pitacco",
+  "app_id": "",
+  "proxies":[
+  	{
+      "path": "/pitacco",
+      "proxyUrl": "http://pitacco.com.br/api"
+    }
+  ]
+}
