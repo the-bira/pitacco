@@ -9,7 +9,7 @@
         </div>
 
         <div class="list">
-            <a ui-sref="negocio({id: negocio.id})" class="item item-avatar-left" ng-repeat="negocio in negocios">
+            <a href="#/negocio/{{negocio.id}}" class="item item-avatar-left" ng-repeat="negocio in negocios">
                 <img src=""/>
                 <h2>{{ negocio.nome }}</h2>
                 <p>

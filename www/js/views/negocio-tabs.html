@@ -1,23 +1,27 @@
 <ion-view >
     <ion-content>
-        <ion-tabs class="tabs-positive tabs-top tabs-background-energized tabs-color-light"/>
-                <ion-tab icon="ion-home" ui-sref="negocio.home">
-                    <ion-nav-view>
-                    </ion-nav-view>
-                </ion-tab>
-                <ion-tab icon="ion-android-call" class="active">
-                </ion-tab>
-                <ion-tab icon="ion-location">
-                    <ion-nav-view name="negocio.mapa">
-                    </ion-nav-view>
-                </ion-tab>
-                <ion-tab icon="ion-ios-heart-outline">
+      <ion-tabs class="tabs-positive tabs-top tabs-background-energized tabs-color-light"/>
+        <ion-tab icon="ion-home" on-select="setCurrentTab('home')"></ion-tab>
+        <ion-tab icon="ion-android-call" on-select="setCurrentTab('call')"></ion-tab>
+        <ion-tab icon="ion-location" on-select="setCurrentTab('map')"></ion-tab>
+        <ion-tab icon="ion-ios-heart-outline" on-select="setCurrentTab('favorites')"></ion-tab>
+        <ion-tab icon="ion-chatbubble" on-select="setCurrentTab('review')"></ion-tab>
+      </ion-tabs>
 
-                </ion-tab>
-                <ion-tab icon="ion-chatbubble">
-                    <ion-nav-view name="avaliacao">
-                    </ion-nav-view>
-                </ion-tab>
-        </ion-tabs>
+      <div style="padding-top:5em;" ng-show="currentTab==='home'">
+        Home
+      </div>
+      <div style="padding-top:5em;" ng-show="currentTab==='call'">
+        Call
+      </div>
+      <div style="padding-top:5em;" ng-show="currentTab==='map'">
+        Map
+      </div>
+      <div style="padding-top:5em;" ng-show="currentTab==='favorites'">
+        Favorites
+      </div>
+      <div style="padding-top:5em;" ng-show="currentTab==='review'">
+        Review
+      </div>
     </ion-content>
 </ion-view>

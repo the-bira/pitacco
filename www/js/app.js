@@ -27,34 +27,33 @@ app.config(function($stateProvider,$urlRouterProvider){
       url:"/",
       templateUrl:'/js/views/ramo.html',
       controller: 'RamoController'
-  })
+    })
     .state('categoria-negocio',{
-        url:"/ramo/:idRamo/categoria-negocio",
-        templateUrl: "/js/views/categorias.html",
-        controller: "CategoriaController"
-  })
+      url:"/ramo/:idRamo/categoria-negocio",
+      templateUrl: "/js/views/categorias.html",
+      controller: "CategoriaController"
+    })
     .state('negocios',{
       url:"/negocio",
-      params:{"categoria":null,"ramo":null, "search":null, "per_page":null,},
+      params: {
+        "categoria":null,
+        "ramo":null,
+        "search":null,
+        "per_page":null,
+      },
       templateUrl: "/js/views/negocios.html",
       controller: "NegocioController"
-  })
+    })
     .state("negocio",{
-        url:'/negocio/:id',
-      //  abstract:true,
-        views:{
-          '':{
-            controller:function(){console.log("testetse");},
-            templateUrl:"/js/views/negocio-tabs.html"
-
-          },
-          "home":{
-            controller:function(){
-              console.log('Aimbere');
-            },
-            templateUrl:"/js/views/negocio.home.html"
-          }
-        }
-  })
-
+      url:'/negocio/:id',
+      controller: function ($log, $scope) {
+        $log.debug('negocio controller');
+        $scope.currentTab = 'home';
+        $scope.setCurrentTab = function (name) {
+          $log.debug('set current tab: ' + name);
+          $scope.currentTab = name;
+        };
+      },
+      templateUrl: 'js/views/negocio-tabs.html',
+    });
 });
