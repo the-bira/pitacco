@@ -25,16 +25,36 @@
     <link rel="stylesheet" type="text/css" href="css/pitacco-style.css"/>
   </head>
   <body>
-    <ion-pane>
-      <ion-header-bar class="bar-energized has-tabs has-tabs-top">
-        <h1 class="title">pitacco</h1>
-      </ion-header-bar>
       <ion-side-menus>
+        <ion-side-menu-content>
+          <ion-header-bar class="bar-energized has-tabs has-tabs-top">
+            <div class="buttons">
+              <button class="button icon button-clear ion-navicon-round"
+                ng-click="toggleLeft()"></button>
+            </div>
+            <h1 class="title">pitacco</h1>
+          </ion-header-bar>
+          <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
         <!-- Left menu -->
         <ion-side-menu side="left">
+          <ion-list>
+            <ion-item>
+                Baixar Cidade
+            </ion-item>
+            <ion-item>
+                Cidades Baixadas
+            </ion-item>
+            <ion-item>
+                Favoritos
+            </ion-item>
+            <ion-item>
+                Login
+            </ion-item>
+
+          </ion-list>
         </ion-side-menu>
       </ion-side-menus>
-      <ion-nav-view></ion-nav-view>
-    </ion-pane>
+
   </body>
 </html>

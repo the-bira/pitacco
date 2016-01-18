@@ -1,10 +1,12 @@
 angular.module("app.controllers",[])
+//Criação de Factory para conversão de coordenada em kms
 	.factory('ConvertToKm',function(){
+		//configuração de constantes de raio de coordenada
 		var toRad = function(value){
 			var RADIANT_CONSTANT = 0.0174532925199433;
 			return (value * RADIANT_CONSTANT);
 		}
-
+		//função que converte raios em kms
 		this.calculateDistance = function(starting,ending){
 			var KM_RATIO = 6371;
 			try {
@@ -29,6 +31,14 @@ angular.module("app.controllers",[])
 	.controller("RamoController",["$scope", "$http","$ionicSideMenuDelegate",
 		function($scope, $http,$ionicSideMenuDelegate ){
 
+			$scope.toggleLeft = function($ionicSideMenuDelegate){
+				$ionicSideMenuDelegate.toggleLeft();
+			}
+
+			$scope.chupetinha = function(){
+					console.log("boquetinho da manhã");
+			}
+
 			$scope.ramos = [];
 				$http({
 					method:"GET",
@@ -41,9 +51,6 @@ angular.module("app.controllers",[])
 					return false;
 				});
 
-				$scope.toggleLeft = function() {
-				  $ionicSideMenuDelegate.toggleLeft();
-				};
 		}])
 	.controller("CategoriaController",["$scope","$http","$stateParams","$state",
 		function($scope,$http,$stateParams,$state){
