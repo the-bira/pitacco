@@ -1,3 +1,22 @@
 .tabs-top > .tabs, .tabs.tabs-top {
     top: 0 !important;
 }
+
+.swiper-container {
+  height:25em;
+  background-color: yellow;
+}
+
+ul.rating li {
+  display: inline;
+  border: 0px;
+  background: none;
+  padding: 5px 10px;
+}
+ul.rating li i {
+  font-size: 3.5em;
+}
+
+.rating-center{
+  text-align:center;
+}

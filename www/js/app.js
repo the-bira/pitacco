@@ -4,7 +4,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers','ui.router']);
+var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers','ui.router','ionic.rating']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -42,18 +42,11 @@ app.config(function($stateProvider,$urlRouterProvider){
         "per_page":null,
       },
       templateUrl: "/js/views/negocios.html",
-      controller: "NegocioController"
+      controller: "NegociosController"
     })
     .state("negocio",{
       url:'/negocio/:id',
-      controller: function ($log, $scope) {
-        $log.debug('negocio controller');
-        $scope.currentTab = 'home';
-        $scope.setCurrentTab = function (name) {
-          $log.debug('set current tab: ' + name);
-          $scope.currentTab = name;
-        };
-      },
+      controller:"NegocioController",
       templateUrl: 'js/views/negocio-tabs.html',
     });
 });

@@ -9,19 +9,36 @@
       </ion-tabs>
 
       <div style="padding-top:5em;" ng-show="currentTab==='home'">
-        Home
-      </div>
-      <div style="padding-top:5em;" ng-show="currentTab==='call'">
-        Call
+        <div class="card">
+          <div class="item">
+              <h2>{{negocio.nome}}</h2>
+              <p>{{negocio.enderecos[0].descricao}}</p>
+          </div>
+          <div class="item item-body">
+            <ion-slide-box class="swiper-container" on-slide-changed="slideHasChanged($index)">
+              <ion-slide>
+                <div class="box blue"><h2>Exemplo 1</h2></div>
+              </ion-slide>
+              <ion-slide>
+                <div class="box yellow"><h2>Exemplo 2</h2></div>
+              </ion-slide>
+              <ion-slide>
+                <div class="box pink"><h2>Exemplo 3</h2></div>
+              </ion-slide>
+            </ion-slide-box>
+          </div>
+          <a ng-click="negocios({{categoria.pivot.idCategoria}},{{categoria.ramo.id}})" href="" ng-repeat="categoria in negocio.categorias">
+            olar
+          </a>
+        </div>
       </div>
       <div style="padding-top:5em;" ng-show="currentTab==='map'">
         Map
       </div>
-      <div style="padding-top:5em;" ng-show="currentTab==='favorites'">
-        Favorites
-      </div>
       <div style="padding-top:5em;" ng-show="currentTab==='review'">
-        Review
+        <div class="rating-center">
+          <rating ng-model="rating.rate" max="5"></rating>
+        </div>
       </div>
     </ion-content>
 </ion-view>

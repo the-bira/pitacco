@@ -35,10 +35,6 @@ angular.module("app.controllers",[])
 				$ionicSideMenuDelegate.toggleLeft();
 			}
 
-			$scope.chupetinha = function(){
-					console.log("boquetinho da manhã");
-			}
-
 			$scope.ramos = [];
 				$http({
 					method:"GET",
@@ -77,7 +73,7 @@ angular.module("app.controllers",[])
 			};
 
 		}])
-	.controller("NegocioController",['$scope','$http',"$stateParams","$state",'$cordovaGeolocation','ConvertToKm',
+	.controller("NegociosController",['$scope','$http',"$stateParams","$state",'$cordovaGeolocation','ConvertToKm',
 		function($scope, $http, $stateParams, $state, $cordovaGeolocation, ConvertToKm){
 			console.log("NegocioController");
 			$stateParams.callback = "JSON_CALLBACK";
@@ -114,3 +110,44 @@ angular.module("app.controllers",[])
 			}
 
 		}])
+		.controller("NegocioController",['$scope','$http',"$stateParams","$state",'$cordovaGeolocation','ConvertToKm',
+				function($scope, $http, $stateParams, $state, $cordovaGeolocation, ConvertToKm){
+					$scope.currentTab = 'home';
+	        $scope.setCurrentTab = function (name) {
+	          $scope.currentTab = name;
+	        };
+
+					$stateParams.callback = "JSON_CALLBACK";
+
+					$http({
+						method:"GET",
+						url:"pitacco/negocio/"+$stateParams.id,
+						params:$stateParams.callback
+					})
+					.success(function(data){
+						console.log(data);
+						$scope.negocio = data;
+					})
+
+					$scope.negocios = function(idCategoria,idRamo){
+						var parameters = {
+							'ramo':idRamo,
+							'categoria':idCategoria
+						};
+						//chamada para lista de negócios
+						$state.go('negocios',parameters);
+					};
+
+					$scope.getCategoria = function(idRamo){
+						var categorias;
+
+						$http({
+							method:"GET",
+							url:"pitacco/ramo/"+$stateParams.idRamo+"/categoria-negocio?callback=JSON_CALLBACK",
+						})
+						.success(function(data){
+							categorias = data;
+						})
+					}
+
+				}])
