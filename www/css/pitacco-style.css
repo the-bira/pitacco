@@ -20,3 +20,25 @@ ul.rating li i {
 .rating-center{
   text-align:center;
 }
+
+.dark{
+  background-color: #3f4041 !important;
+
+}
+
+.menu-black{
+  background-color: #3f4041 !important;
+  border-color: black;
+  color: #ffffff;
+.scroll-content {
+  background-color: #3f4041 !important;
+}
+}
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+.scroll {
+ height: 100%;
+}

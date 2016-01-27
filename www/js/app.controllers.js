@@ -1,4 +1,4 @@
-angular.module("app.controllers",[])
+angular.module("app.controllers",['ngOpenFB'])
 //Criação de Factory para conversão de coordenada em kms
 	.factory('ConvertToKm',function(){
 		//configuração de constantes de raio de coordenada
@@ -29,7 +29,7 @@ angular.module("app.controllers",[])
 
 	})
 	.controller("RamoController",["$scope", "$http","$ionicSideMenuDelegate",
-		function($scope, $http,$ionicSideMenuDelegate ){
+		function($scope, $http,$ionicSideMenuDelegate){
 
 			$scope.toggleLeft = function($ionicSideMenuDelegate){
 				$ionicSideMenuDelegate.toggleLeft();
@@ -150,4 +150,33 @@ angular.module("app.controllers",[])
 						})
 					}
 
+					$scope.call = function(phone){
+						window.location.href = "tel:"+phone;
+					}
+
+					function init_map() {
+  map = new google.maps.Map(document.getElementById('leonardo'),{
+      zoom: 10,
+      center: new google.maps.LatLng(43.07493, -89.381388),
+      type: "ROADMAP"
+  });
+}
+					google.maps.event.addDomListener(window, 'load',init_map);
+					console.log("leonardo");
 				}])
+				.controller("SideMenuController",['$scope','$http',"$stateParams","$state",
+					function($scope,$htto,$stateParams,$state,$ionicModal, $timeout,ngFB){
+						$scope.fbLogin = function () {
+							console.log("eita");
+							ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
+									function (response) {
+											if (response.status === 'connected') {
+													console.log('Facebook login succeeded');
+													$scope.closeLogin();
+											} else {
+													alert('Facebook login failed');
+											}
+									});
+						};
+
+					}])

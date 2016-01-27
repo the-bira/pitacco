@@ -4,9 +4,12 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers','ui.router','ionic.rating']);
+var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers','ui.router','ionic.rating','ngOpenFB']);
 
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform, ngFB) {
+  //facebook-login
+  ngFB.init({appId: '1669804873290427'});
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -48,5 +51,29 @@ app.config(function($stateProvider,$urlRouterProvider){
       url:'/negocio/:id',
       controller:"NegocioController",
       templateUrl: 'js/views/negocio-tabs.html',
-    });
+    })
+    .state("baixarcidade",{
+      url:"/baixarcidade",
+      controller:"BaixarCidadeController"
+    })
+    .state("config",{
+      url:"/config",
+      controller:"ConfigController"
+    })
+    .state("login",{
+      url:"/login",
+      controller:"LoginController"
+    })
+    .state("favoritos",{
+      url:"/favoritos",
+      controller:""
+    })
+    .state("avaliados",{
+      url:"/avaliados",
+      controller:""
+    })
+    .state("baixados",{
+      url:"/baixados",
+      controller:""
+    })
 });

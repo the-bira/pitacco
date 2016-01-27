@@ -2,7 +2,7 @@
     <ion-content>
       <ion-tabs class="tabs-positive tabs-top tabs-background-energized tabs-color-light"/>
         <ion-tab icon="ion-home" on-select="setCurrentTab('home')"></ion-tab>
-        <ion-tab icon="ion-android-call" on-select="setCurrentTab('call')"></ion-tab>
+        <ion-tab icon="ion-android-call" on-select="setCurrentTab('call')" ng-click="call({{}})"></ion-tab>
         <ion-tab icon="ion-location" on-select="setCurrentTab('map')"></ion-tab>
         <ion-tab icon="ion-ios-heart-outline" on-select="setCurrentTab('favorites')"></ion-tab>
         <ion-tab icon="ion-chatbubble" on-select="setCurrentTab('review')"></ion-tab>
@@ -27,16 +27,19 @@
               </ion-slide>
             </ion-slide-box>
           </div>
-          <a ng-click="negocios({{categoria.pivot.idCategoria}},{{categoria.ramo.id}})" href="" ng-repeat="categoria in negocio.categorias">
-            olar
-          </a>
+          <span ng-repeat="categoria in negocio.categorias">
+            <a ng-click="negocios({{categoria.pivot.idCategoria}},{{categoria.ramo.id}})" href="">
+              Categoria {{categoria.pivot.idCategoria}}
+            </a> ,
+          </span>
         </div>
       </div>
       <div style="padding-top:5em;" ng-show="currentTab==='map'">
-        Map
+        <div id="leonardo" data-tap-disabled="true" class="map">
+        </div>
       </div>
       <div style="padding-top:5em;" ng-show="currentTab==='review'">
-        <div class="rating-center">
+        <div class=" card list rating-center">
           <rating ng-model="rating.rate" max="5"></rating>
         </div>
       </div>
