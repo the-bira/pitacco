@@ -4,13 +4,13 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers', 'ngMap', 'ui.router','ionic.rating','ngOpenFB']);
+var app = angular.module('pitacco', ['ionic','ngCordova','app.controllers', 'ngMap','ionic.rating','ngOpenFB']);
 
-app.run(function($ionicPlatform, ngFB) {
-  //facebook-login
-  ngFB.init({appId: '1669804873290427'});
-
+app.run(function($ionicPlatform, $openFB) {
   $ionicPlatform.ready(function() {
+    //facebook-login
+    $openFB.init({appId: '1669804873290427', tokenStore: window.localStorage});
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {

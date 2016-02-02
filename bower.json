@@ -17,5 +17,8 @@
     "www/lib",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "ngOpenFB": "*"
+  }
 }

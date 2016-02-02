@@ -35,7 +35,12 @@
         </div>
       </div>
       <div style="padding-top:5em;" ng-if="currentTab === 'map'">
-        <ng-map id="map" center="-23.5505199, -46.6333094" zoom="15"></ng-map>
+        <ng-map id="map" center="{{negocio.enderecos[0].latitude}},{{negocio.enderecos[0].longitude}}" zoom="15">
+          <marker
+             position="{{negocio.enderecos[0].latitude}},{{negocio.enderecos[0].longitude}}"
+             animation="Animation.BOUNCE">
+           </marker>
+        </ng-map>
       </div>
       <div style="padding-top:5em;" ng-show="currentTab==='review'">
         <div class=" card list rating-center">

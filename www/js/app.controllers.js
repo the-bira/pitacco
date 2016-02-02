@@ -112,6 +112,8 @@ angular.module("app.controllers",['ngOpenFB'])
 		}])
 		.controller("NegocioController",['$scope','$http',"$stateParams","$state",'$cordovaGeolocation','ConvertToKm',
 				function($scope, $http, $stateParams, $state, $cordovaGeolocation, ConvertToKm){
+
+					var negocio;
 					$scope.currentTab = 'home';
 	        $scope.setCurrentTab = function (name) {
 	          $scope.currentTab = name;
@@ -125,8 +127,8 @@ angular.module("app.controllers",['ngOpenFB'])
 						params:$stateParams.callback
 					})
 					.success(function(data){
-						console.log(data);
-						$scope.negocio = data;
+						negocio = data;
+						$scope.negocio = negocio;
 					})
 
 					$scope.negocios = function(idCategoria,idRamo){
@@ -154,29 +156,18 @@ angular.module("app.controllers",['ngOpenFB'])
 						window.location.href = "tel:"+phone;
 					}
 
-					function init_map() {
-  map = new google.maps.Map(document.getElementById('leonardo'),{
-      zoom: 10,
-      center: new google.maps.LatLng(43.07493, -89.381388),
-      type: "ROADMAP"
-  });
-}
-					google.maps.event.addDomListener(window, 'load',init_map);
-					console.log("leonardo");
 				}])
-				.controller("SideMenuController",['$scope','$http',"$stateParams","$state",
-					function($scope,$htto,$stateParams,$state,$ionicModal, $timeout,ngFB){
-						$scope.fbLogin = function () {
-							console.log("eita");
-							ngFB.login({scope: 'email,read_stream,publish_actions'}).then(
-									function (response) {
-											if (response.status === 'connected') {
-													console.log('Facebook login succeeded');
-													$scope.closeLogin();
-											} else {
-													alert('Facebook login failed');
-											}
-									});
-						};
+				.controller("SideMenuController",['$scope','$http',"$stateParams","$state","$openFB",
+					function($scope,$state,$openFB){
+						$scope.fbLogin = function(){
+					    $openFB.login({scope: 'email,public_profile'})
+					    .then(function (response) {
+					      if (response.status === 'connected') {
+					        console.log("Deu pacêro");
+					      } else {
+					        console.log("Algo de errado aconteceu.")
+					      }
+					    });
+					  }
 
 					}])
