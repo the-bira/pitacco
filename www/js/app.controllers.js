@@ -157,11 +157,12 @@ angular.module("app.controllers",['ngOpenFB'])
 					}
 
 				}])
-				.controller("SideMenuController",['$scope','$http',"$stateParams","$state","$openFB",
+				.controller("SideMenuController",['$scope','$state','$openFB',
 					function($scope,$state,$openFB){
 						$scope.fbLogin = function(){
 					    $openFB.login({scope: 'email,public_profile'})
 					    .then(function (response) {
+					    	console.log('aqui nem ta entrando')
 					      if (response.status === 'connected') {
 					        console.log("Deu pacêro");
 					      } else {
