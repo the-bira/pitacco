@@ -22,7 +22,5 @@
     "com.ionic.keyboard",
     "cordova-plugin-geolocation"
   ],
-  "cordovaPlatforms": [
-    "android"
-  ]
+  "cordovaPlatforms": []
 }
