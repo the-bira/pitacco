@@ -26,6 +26,26 @@ ul.rating li i {
 
 }
 
+.facebook-login {
+  background-color:#191970 !important;
+  color: #fff !important;
+}
+
+.facebook-logout {
+  background-color:#CD0000 !important;
+  color: #fff !important;
+}
+
+.profile-info {
+  width:100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-content: center;
+  align-content: center;
+}
+
 .menu-black{
   background-color: #3f4041 !important;
   border-color: black;

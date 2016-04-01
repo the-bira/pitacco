@@ -1,83 +1,105 @@
 <!DOCTYPE html>
 <html ng-app="pitacco">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="js/angular-chart.js/dist/angular-chart.min.css"/>
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+  -->
 
-    <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <script src="js/ngCordova/dist/ng-cordova.js"></script>
-    <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+  <script src="js/ngCordova/dist/ng-cordova.js"></script>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-    <script src="js/app.controllers.js"></script>
-    <script src="js/ionic-rating/ionic-rating.min.js"></script>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/app.controllers.js"></script>
+  <script src="js/ionic-rating/ionic-rating.min.js"></script>
 
-    <!-- facebook-login -->
-    <script src="js/ngOpenFB/ngOpenFB.min.js"></script>
+  <!-- facebook-login -->
+  <script src="js/ngOpenFB/ngOpenFB.min.js"></script>
+  <script src="js/Chart.js/Chart.min.js"></script>
+  <script src="js/angular-chart.js/dist/angular-chart.min.js"></script>
 
-    <!-- google-maps -->
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAX6f1WHFIc-59D1ornNmO3Rdo64r2Gu0A&sensor=true"></script>
-    <script src="js/ngmap/build/scripts/ng-map.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/pitacco-style.css"/>
-  </head>
-  <body>
-      <ion-side-menus>
-        <ion-side-menu-content>
-          <ion-header-bar class="bar-energized has-tabs has-tabs-top">
-            <div class="buttons">
-              <button class="button icon button-clear ion-navicon-round"
-                ng-click="toggleLeft()"></button>
-            </div>
-            <h1 class="title">pitacco</h1>
-          </ion-header-bar>
-          <ion-nav-view></ion-nav-view>
-        </ion-side-menu-content>
-        <!-- Left menu -->
-        <ion-side-menu side="left" ng-controller="SideMenuController">
-          <ion-header-bar class="bar-dark">
-            <h1 class="title">Menu</h1>
-          </ion-header-bar>
-          <div class="card list">
-            <a class="item"></a>
-            <a href="" class="item item-icon-left">
-              <i class="icon ion-android-download"></i>
-              Baixar Cidade
-            </a>
-            <a href="" class="item item-icon-left">
-              <i class="icon ion-home"></i>
-              Cidades Baixadas
-            </a>
-            <a href="" class="item item-icon-left">
-              <i class="icon ion-heart"></i>
-              Favoritos
-            </a>
-            <a href="" class="item item-icon-left">
-              <i class="icon ion-android-star-half"></i>
-              Avaliados
-            </a>
-            <a href="" class="item item-icon-left">
-              <i class="icon ion-home"></i>
-              Configurações
-            </a>
-            <a href="" class="item item-icon-left" ng-click="fbLogin()">
-              <i class="icon ion-social-facebook"></i>
-              Login
-            </a>
+  <!-- google-maps -->
+  <script src="http://maps.google.com/maps/api/js?key=AIzaSyAX6f1WHFIc-59D1ornNmO3Rdo64r2Gu0A&sensor=true"></script>
+  <script src="js/ngmap/build/scripts/ng-map.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/pitacco-style.css"/>
+</head>
+<body>
+  <ion-side-menus>
+  <ion-side-menu-content>
+  <ion-header-bar class="bar-energized has-tabs has-tabs-top">
+  <div class="buttons">
+    <button class="button icon button-clear ion-navicon-round"
+    ng-click="toggleLeft()"></button>
+  </div>
+  <h1 class="title">pitacco</h1>
+</ion-header-bar>
+<ion-nav-view></ion-nav-view>
+</ion-side-menu-content>
+<!-- Left menu -->
+<ion-side-menu side="left" ng-controller="SideMenuController">
+<ion-header-bar class="bar-dark">
+<h1 class="title">Menu</h1>
+</ion-header-bar>
+<div class="list">
+    <a class="item">
+    </a>
+    <a class="item">
+    </a>
+    <!-- Usado para usuários logados -->
+    <div class="item item-divider">
+      Perfil
+    </div>
+    <div class="item profile-info">
+    </div>
+    <a href="" class="item item-icon-left">
+      <i class="icon ion-heart"></i>
+      Favoritos
+    </a>
+  
+    <a href="" class="item item-icon-left">
+      <i class="icon ion-android-star-half"></i>
+      Avaliados
+    </a>
 
-          </div>
-        </ion-side-menu>
-      </ion-side-menus>
-  </body>
+    <a href="" ng-hide="!estaLogado" ng-click="fbLogin()" class="item item-icon-left facebook-login">
+      <i class="icon ion-social-facebook"></i>
+      Login
+    </a>
+     <a href="" ng-hide="estaLogado" ng-click="" class="item item-icon-left facebook-logout">
+      <i class="icon ion-power"></i>
+      Sair
+    </a>
+    <!-- menu de uso geral -->
+    <div class="item item-divider">
+      Menu
+    </div>
+    <a href="" class="item item-icon-left">
+      <i class="icon ion-android-download"></i>
+      Baixar Cidade
+    </a>  
+    <a href="" class="item item-icon-left">
+      <i class="icon ion-home"></i>
+      Cidades Baixadas
+    </a>
+
+    <a href="" class="item item-icon-left">
+      <i class="icon ion-home"></i>
+      Configurações
+    </a>
+</div>
+</ion-side-menu>
+</ion-side-menus>
+</body>
 </html>

@@ -44,7 +44,20 @@
       </div>
       <div style="padding-top:5em;" ng-show="currentTab==='review'">
         <div class=" card list rating-center">
-          <rating ng-model="rating.rate" max="5"></rating>
+          <div class="item">
+            <rating ng-model="rating.rate" rate="4" max="5"></rating>
+          </div>
+          <div class="item">
+            <div class="item item-divider">
+              Avaliações
+            </div>
+            <div class="item item-text-wrap">
+              <canvas id="line" class="chart chart-doughnut" data="data"
+              labels="labels" legend="false" series="series"
+              options="{showTooltips: true}"
+              height="70%"></canvas>
+        </div>
+          </div>
         </div>
       </div>
     </ion-content>

@@ -19,6 +19,7 @@
     "tests"
   ],
   "dependencies": {
-    "ngOpenFB": "*"
+    "ngOpenFB": "*",
+    "angular-chart.js": "^0.8.8"
   }
 }

@@ -32,6 +32,7 @@ angular.module("app.controllers",['ngOpenFB'])
 		function($scope, $http,$ionicSideMenuDelegate){
 
 			$scope.toggleLeft = function($ionicSideMenuDelegate){
+				setTimeOut(100);
 				$ionicSideMenuDelegate.toggleLeft();
 			}
 
@@ -136,7 +137,7 @@ angular.module("app.controllers",['ngOpenFB'])
 							'ramo':idRamo,
 							'categoria':idCategoria
 						};
-						//chamada para lista de negócios
+					//chamada para lista de negócios
 						$state.go('negocios',parameters);
 					};
 
@@ -156,19 +157,33 @@ angular.module("app.controllers",['ngOpenFB'])
 						window.location.href = "tel:"+phone;
 					}
 
+					$scope.labels = ["5 estrelas", "4 estrelas", "3 estrelas", "2 estrelas", "1 estrela"];
+					$scope.series = ["5 estrelas", "4 estrelas", "3 estrelas", "2 estrelas", "1 estrela"];
+				  $scope.data = [11, 32, 34, 21,6];
+
 				}])
 				.controller("SideMenuController",['$scope','$state','$openFB',
 					function($scope,$state,$openFB){
-						$scope.fbLogin = function(){
-					    $openFB.login({scope: 'email,public_profile'})
-					    .then(function (response) {
-					    	console.log('aqui nem ta entrando')
-					      if (response.status === 'connected') {
-					        console.log("Deu pacêro");
-					      } else {
-					        console.log("Algo de errado aconteceu.")
-					      }
-					    });
-					  }
+						$scope.estaLogado = true;
 
+						$scope.fbLogin = function(){
+						    $openFB.login({scope: 'email,public_profile'})
+						    .then(function (response) {
+						      $scope.fbLogado();
+						      console.log($scope.estaLogado);
+						    });
+					  	}
+
+					  	$scope.fbLogado = function(){
+					  		$openFB.isLoggedIn().then(function(loginStatus) {
+								if (loginStatus.status === 'connected') {
+									$scope.estaLogado = true;
+								}
+								else{
+									$scope.estaLogado = false;
+								}
+					  		});
+					  	}
+
+					  	$scope.fbLogado();
 					}])
