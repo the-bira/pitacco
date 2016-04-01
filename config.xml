@@ -73,5 +73,4 @@
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320"/>
   </platform>
   <plugin name="org.apache.cordova.geolocation" spec="~0.3.12"/>
-  <gap:plugin name="com.google.cordova.admob" source="plugins.cordova.io" />
 </widget>
